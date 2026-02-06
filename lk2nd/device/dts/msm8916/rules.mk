@@ -42,6 +42,7 @@ QCDTBS += \
 	$(LOCAL_DIR)/msm8939-huawei-kiwi.dtb \
 	$(LOCAL_DIR)/msm8939-huawei-rio.dtb \
 	$(LOCAL_DIR)/msm8939-mtp.dtb \
+	$(LOCAL_DIR)/msm8939-zte-blade-s6.dtb \
 	$(LOCAL_DIR)/msm8939-qrd-skuk.dtb \
 	$(LOCAL_DIR)/msm8939-qrd-wt82918.dtb \
 	$(LOCAL_DIR)/msm8939-qrd-wt82918hd.dtb \

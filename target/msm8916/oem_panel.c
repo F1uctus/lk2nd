@@ -55,6 +55,7 @@
 #include "include/panel_jdi_fhd_video.h"
 #include "include/panel_hx8379a_fwvga_video.h"
 #include "include/panel_hx8394d_720p_video.h"
+#include "include/panel_td4291_jdi_720p_video.h"
 #include "include/panel_nt35521_wxga_video.h"
 #include "include/panel_samsung_wxga_video.h"
 #include "include/panel_hx8279a_wsvga_video.h"
@@ -96,6 +97,7 @@ static struct panel_list supp_panels[] = {
 	{"jdi_fhd_video", JDI_FHD_VIDEO_PANEL},
 	{"hx8379a_wvga_video", HX8379A_FWVGA_VIDEO_PANEL},
 	{"hx8394d_720p_video", HX8394D_720P_VIDEO_PANEL},
+	{"td4291_jdi_720p_video", TD4291_JDI_720P_VIDEO_PANEL},
 	{"nt35521_wxga_video", NT35521_WXGA_VIDEO_PANEL},
 	{"samsung_wxga_video", SAMSUNG_WXGA_VIDEO_PANEL},
 	{"hx8279a_wsvga_video", HX8279A_WSVGA_VIDEO_PANEL},
@@ -416,6 +418,31 @@ static int init_panel_data(struct panel_struct *panelstruct,
 		memcpy(phy_db->timing,
 				hx8394d_720p_video_timings, TIMING_SIZE);
 		pinfo->mipi.signature = HX8394D_720P_VIDEO_SIGNATURE;
+		break;
+	case TD4291_JDI_720P_VIDEO_PANEL:
+		panelstruct->paneldata	  = &td4291_jdi_720p_video_panel_data;
+		panelstruct->panelres	  = &td4291_jdi_720p_video_panel_res;
+		panelstruct->color		  = &td4291_jdi_720p_video_color;
+		panelstruct->videopanel   = &td4291_jdi_720p_video_video_panel;
+		panelstruct->commandpanel = &td4291_jdi_720p_video_command_panel;
+		panelstruct->state		  = &td4291_jdi_720p_video_state;
+		panelstruct->laneconfig   = &td4291_jdi_720p_video_lane_config;
+		panelstruct->paneltiminginfo
+					 = &td4291_jdi_720p_video_timing_info;
+		panelstruct->panelresetseq
+					 = &td4291_jdi_720p_video_panel_reset_seq;
+		panelstruct->backlightinfo = &td4291_jdi_720p_video_backlight;
+		pinfo->mipi.panel_on_cmds
+					= td4291_jdi_720p_video_on_command;
+		pinfo->mipi.num_of_panel_on_cmds
+					= TD4291_JDI_720P_VIDEO_ON_COMMAND;
+		pinfo->mipi.panel_off_cmds
+					= td4291_jdi_720p_video_off_command;
+		pinfo->mipi.num_of_panel_off_cmds
+					= TD4291_JDI_720P_VIDEO_OFF_COMMAND;
+		memcpy(phy_db->timing,
+				td4291_jdi_720p_video_timings, TIMING_SIZE);
+		pinfo->mipi.signature = TD4291_JDI_720P_VIDEO_SIGNATURE;
 		break;
 	case NT35521_WXGA_VIDEO_PANEL:
 		panelstruct->paneldata    = &nt35521_wxga_video_panel_data;

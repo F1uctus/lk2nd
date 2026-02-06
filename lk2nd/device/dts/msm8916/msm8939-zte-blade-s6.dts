@@ -1,0 +1,39 @@
+// SPDX-License-Identifier: BSD-3-Clause
+
+#include <skeleton64.dtsi>
+#include <lk2nd.dtsi>
+
+/ {
+	qcom,msm-id = <QCOM_ID_MSM8939 0>;
+	qcom,board-id = <8 1>;
+};
+
+&lk2nd {
+	model = "ZTE Blade S6";
+	compatible = "zte,blade-s6";
+
+	lk2nd,dtb-files = "msm8939-zte-blade-s6";
+
+    gpio-keys {
+        compatible = "gpio-keys";
+
+        volume-down {
+            lk2nd,code = <KEY_VOLUMEDOWN>;
+            gpios = <&tlmm 108 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        };
+
+        volume-up {
+            lk2nd,code = <KEY_VOLUMEUP>;
+            gpios = <&tlmm 107 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        };
+    };
+
+	panel {
+		compatible = "zte,blade-s6-panel", "lk2nd,panel";
+
+		td4291_jdi_720p_video {
+			compatible = "zte,blade-s6-td4291-jdi";
+			touchscreen-compatible = "synaptics,syna-ts";
+		};
+	};
+};
